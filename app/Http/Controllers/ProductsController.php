@@ -7,12 +7,13 @@ use App\Product;
 use App\Comment;
 use App\Services\PaginateAjax;
 use Illuminate\Support\Facades\Auth;
+use App\Post;
 
 class ProductsController extends Controller
 {
   function show($id){
     $product = Product::find($id);
-    $comments = Comment::where('id_product', $id)->paginate(5);
+    $comments = Comment::where('id_product', $id)->orderBy('id','desc')->paginate(5);
     $products = Product::orderByRaw('RAND()')->take(4)->get();
 
     return view('products/show', ['product' => $product, 'comments' => $comments, 'products'=>$products]);
@@ -54,7 +55,7 @@ class ProductsController extends Controller
   function update_cart(Request $request){
     if ($request->id && $request->quantity) {
       $cart = session()->get('cart');
-      $cart[$request->id]['quantity'] = (integer)$request->quantity;
+      $cart[$request->id]['quantity'] = (float)$request->quantity;
       session()->put('cart',$cart);
       return response()->json([
         "table_cart" => view("pages.table_cart")->render(),
@@ -80,8 +81,13 @@ class ProductsController extends Controller
 
   function search(Request $request){
     $name = $request->name;
-    $products = Product::where('name', 'LIKE', '%'.$name.'%')->get();
-    return view('products.search_list', ['products'=>$products]);
+    if ($request->category == 1) {
+      $products = Product::where('name', 'LIKE', '%'.$name.'%')->get();
+      return view('products.search_list', ['products'=>$products]);
+    }else if ($request->category == 2) {
+      $posts = Post::where('title', 'LIKE', '%'.$name.'%')->paginate(10);
+      return view('posts.search_list', ['posts' => $posts]);
+    }
   }
 
   function likedProducts(){

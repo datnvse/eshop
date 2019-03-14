@@ -35,10 +35,10 @@
                     <div class="product-label">
                       <span class="sale">-{{$product->discount*100}}%</span>
                     </div>
-                    <img src="upload/images/{{$product->image}}" alt="">
+                    <img src="upload/images/{{$product->image}}" alt="" style="width: 260px; height: 190px;">
                   </div>
                   <div class="product-body">
-                    <h3 class="product-price">${{$product->price-$product->price*$product->discount}} <del class="product-old-price">${{$product->price}}</del></h3>
+                    <h3 class="product-price">{{number_format($product->price-$product->price*$product->discount)}} <del class="product-old-price">${{$product->price}}</del></h3>
                     <div class="product-rating">
                       @for ($i=0; $i< round($product->comment->avg('rating')); $i++)
                         <i class="fa fa-star"></i>

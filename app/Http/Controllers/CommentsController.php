@@ -24,7 +24,6 @@ class CommentsController extends Controller
         $comment->id_user = $request->id_user;
         $comment->id_product = $request->id_product;
         $comment->content = $request->content;
-        $comment->rating = $request->rating;
 
         $comment->save();
         $user = User::find($comment->id_user);
@@ -33,7 +32,7 @@ class CommentsController extends Controller
 
         $data = array('user'=>$user->name, 'product'=>$comment->id_product, 'content'=>$comment->content);
         // Mail::send('emails.feedback', $data, function($message){
-	    //     $message->to('taikhoangmail', 'Admin')->subject('Thông báo Feedback');
+	    //     $message->to('huydung17101996@gmail.com', 'Admin')->subject('Thông báo Feedback');
 	    // });
         return redirect('products/'.$request->id_product.'/show');
     }

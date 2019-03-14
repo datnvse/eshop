@@ -25,10 +25,11 @@
                     </div>
                     <div class="form-group">
                         <label>Giá</label>
-                        <input class="form-control" name="price" placeholder="Nhập giá sản phẩm" type="number" step="0.1" min=0 />
+                        <input class="form-control" name="price" placeholder="Nhập giá sản phẩm" type="number" step="5000" min=0 />
                     </div>
+                    
                     <div class="form-group">
-                      <label>Hình Ảnh</label>
+                      <label>Hình ảnh</label>
                       <input type="file" name="image" class="form-control">
                     </div>
                     <div class="form-group">
@@ -36,12 +37,21 @@
                       <textarea class="form-control" rows="3" name="description"></textarea>
                     </div>
                     <div class="form-group">
-                      <label>Giảm giá</label>
+                      <label>Discount</label>
                       <input class="form-control" name="discount" placeholder="Nhập giảm giá" type="number" step="0.05" min="0" max="1"  />
+                    </div>
+                    <div class="form-group">
+                      <label>Kiểu sản phẩm</label>
+                      <label class="radio-inline">
+                        <input name="type" value="1" type="radio">Đã chế biến
+                      </label>
+                      <label class="radio-inline">
+                        <input name="type" value="0" checked="" type="radio">Thường
+                      </label>
                     </div>
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <button type="submit" class="btn btn-default"> Thêm</button>
-                    <button type="reset" class="btn btn-default"> Xóa hết</button>
+                    <button type="reset" class="btn btn-default">Xóa hết</button>
                 <form>
             </div>
         </div>

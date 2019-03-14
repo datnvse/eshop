@@ -20,15 +20,8 @@
                 <img src="upload/images/{{$product->image}}" alt="" width="262.5px" height="350px">
               </div>
               <div class="product-body">
-                <h3 class="product-price">{{$product->price - $product->price*$product->discount}}</h3>
-                <div class="product-rating">
-                  @for ($i=0; $i< round($product->comment->avg('rating')); $i++)
-									  <i class="fa fa-star"></i>
-                  @endfor
-                  @for ($i=0; $i< 5-round($product->comment->avg('rating')); $i++)
-                    <i class="fa fa-star-o empty"></i>
-                  @endfor
-                </div>
+                <h3 class="product-price">{{number_format($product->price - $product->price*$product->discount)}} VNĐ</h3>
+                
                 <h2 class="product-name"><a href="products/{{$product->id}}/show">{{$product->name}}</a></h2>
                 <div class="product-btns">
                   <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>

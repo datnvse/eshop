@@ -17,7 +17,7 @@ class CreateLineItemsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('product_id');
-            $table->integer('quantity');
+            $table->double('quantity');
             $table->integer('order_id');
             $table->double('price');
         });

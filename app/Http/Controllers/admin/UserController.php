@@ -18,22 +18,24 @@ class UserController extends Controller
   function create(Request $request){
     $this->validate($request,
       [
-        'name' => 'required', 
-        'email' => 'required|email', 
-        'password' => 'required', 
-        'repassword' => 'required|same:password', 
-        'address' => 'required', 
+        'name' => 'required|min:3',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:6|max:32',
+        'repassword' => 'required|same:password',
         'phone' => 'required'
       ],
       [
-        'name.required' => 'Name cant be blank',
-        'email.required' => 'Name cant be blank',
-        'email.email' => 'Email is not exactly format',
-        'password.required' => 'Password cant be blank',
-        'repassword.same' => 'RePassword is not same password',
-        'repassword.required' => 'RePassword cant be blank',
-        'address.required' => 'Address cant be blank',
-        'phone.required' => 'Phone cant be blank',
+        'phone.required' => 'Không được bỏ trống số điện thoại',
+        'name.required' => 'Không được bỏ trống tên',
+        'name.min' => 'Tên phải có từ 3 kí tự trở lên',
+        'email.required' => 'Không được bỏ trống Email',
+        'email.email' => 'Vui lòng nhập đúng Email',
+        'email.unique' => 'Email đã tồn tại',
+        'password.required' => 'Không được bỏ trống mật khẩu',
+        'password.min' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
+        'password.max' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
+        'repassword.required' => 'Không được bỏ trống xác nhận mật khẩu',
+        'repassword.same' => 'Xác nhận mật khẩu không đúng với mật khẩu',
       ]
     );
 
@@ -45,7 +47,7 @@ class UserController extends Controller
     $user->phone = $request->phone;
     $user->role = $request->role;
     $user->save();
-    return redirect('admin/user/index')->with('success','Create successfully');
+    return redirect('admin/user/index')->with('success','Tạo tài khoản thành công');
   }
   function edit($id){
     $user = User::find($id);
@@ -55,13 +57,11 @@ class UserController extends Controller
     $this->validate($request,
       [
         'name' => 'required', 
-        'address' => 'required', 
         'phone' => 'required'
       ],
       [
-        'name.required' => 'Name cant be blank',
-        'address.required' => 'Address cant be blank',
-        'phone.required' => 'Phone cant be blank',
+        'name.required' => 'Không được bỏ trống tên',
+        'phone.required' => 'Không được bỏ trống số điện thoại',
       ]
     );
 

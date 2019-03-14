@@ -27,7 +27,8 @@
         <div id="store">
           <!-- row -->
           <div class="row">
-            @foreach ($products as $product)
+            @if (count($products) > 0)
+              @foreach ($products as $product)
               <!-- Product Single -->
               <div class="col-md-4 col-sm-6 col-xs-6">
                 <div class="product product-single">
@@ -35,10 +36,10 @@
                     <div class="product-label">
                       <span class="sale">-{{$product->discount*100}}%</span>
                     </div>
-                    <img src="upload/images/{{$product->image}}" alt="">
+                    <img src="upload/images/{{$product->image}}" alt="" style="width: 260px; height: 190px;">
                   </div>
                   <div class="product-body">
-                    <h3 class="product-price">${{$product->price-$product->price*$product->discount}} <del class="product-old-price">${{$product->price}}</del></h3>
+                    <h3 class="product-price">{{number_format(($product->price-$product->price*$product->discount))}} VNĐ <del class="product-old-price">${{$product->price}}</del></h3>
                     <div class="product-rating">
                       @for ($i=0; $i< round($product->comment->avg('rating')); $i++)
                         <i class="fa fa-star"></i>
@@ -79,7 +80,12 @@
                 </div>
               </div>
               <!-- /Product Single -->
-            @endforeach
+              @endforeach
+            @else
+              <div class="alert alert-danger">
+                Không tìm thấy sản phẩm
+              </div>
+            @endif
           </div>
           <!-- /row -->
         </div>

@@ -10,24 +10,36 @@
   <!-- section title -->
   @foreach ($lastest_products as $lastest_product)
     <!-- Product Single -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal<?php echo  $lastest_product->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{$lastest_product->name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="upload/images/{{$lastest_product->image}}" alt="" width="550px">
+              Tên: <a href="products/{{$lastest_product->id}}/show">{{$lastest_product->name}}</a> <br>
+              Giá: {{number_format($lastest_product->price - $lastest_product->price*$lastest_product->discount )}} VNĐ <br>
+              Mô tả: {{$lastest_product->description}} <br>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="col-md-3 col-sm-6 col-xs-6">
       <div class="product product-single">
-        <div class="product-thumb">
-          <img src="upload/images/{{$lastest_product->image}}" alt="" style="width: 260px; height: 190px;">
+        <div class="">
+          <img src="upload/images/{{$lastest_product->image}}" alt="" style="width: 260px; height: 190px;" data-toggle="modal" data-target="#myModal<?php echo  $lastest_product->id ?>">
         </div>
         <div class="product-body">
-          <h3 class="product-price">{{$lastest_product->price*(1-$lastest_product->discount)}} VNĐ</h3>
+          <h3 class="product-price">{{number_format($lastest_product->price*(1-$lastest_product->discount))}} VNĐ</h3>
           @php
             $rating = round($lastest_product->comment->avg('rating'));
           @endphp
-          <div class="product-rating">
-            @for ($i=0; $i< $rating; $i++)
-              <i class="fa fa-star"></i>
-            @endfor
-            @for ($i=0; $i< 5-$rating; $i++)
-              <i class="fa fa-star-o empty"></i>
-            @endfor
-          </div>
+          
           <h2 class="product-name"><a href="products/{{$lastest_product->id}}/show">{{$lastest_product->name}}</a></h2>
           <div class="product-btns">
             @if (Auth::user())

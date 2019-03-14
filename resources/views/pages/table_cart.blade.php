@@ -23,12 +23,12 @@
         <td class="details">
           <a href="products/{{$id}}/show">{{$details['name']}}</a>
         </td>
-        <td class="price text-center"><strong>{{$details['promotionprice']}} VNĐ</strong>
-          <small><del class="product-old-price">{{$details['price']}} VNĐ</del></small>
+        <td class="price text-center"><strong>{{number_format($details['promotionprice'])}} VNĐ</strong>
+          <small><del class="product-old-price">{{number_format($details['price'])}} VNĐ</del></small>
         </td>
         <td class="qty text-center"><input class="input quantity" type="number"
-          value="{{$details['quantity']}}" min="1"></td>
-        <td class="total text-center"><strong class="primary-color">$<span class="subtotal">{{$details['quantity']*$details['promotionprice']}}</span></strong></td>
+          value="{{$details['quantity']}}" min="1" step="0.5"></td>
+        <td class="total text-center"><strong class="primary-color"><span class="subtotal">{{number_format($details['quantity']*$details['promotionprice'])}} VNĐ</span></strong></td>
         <td class="text-right"><button class="main-btn icon-btn update-cart" data-id="{{$id}}"><i class="fa fa-refresh"></i></button></td>
         <td class="text-right"><button class="main-btn icon-btn remove-from-cart-o-duoi" data-id="{{$id}}"><i class="fa fa-close"></i></button></td>
       </tr>

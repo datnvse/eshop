@@ -45,6 +45,23 @@
                       <label>Giảm giá</label>
                       <input class="form-control" name="discount" placeholder="Nhập giảm giá" type="number" step="0.05" min="0" max="1" value="{{$product->discount}}"/>
                     </div>
+                    <div class="form-group">
+                      <label>Kiểu sản phẩm</label>
+                      <label class="radio-inline">
+                        <input name="type" value="1" type="radio"
+                          <?php if ($product->type == 1) {
+                            echo "checked";
+                          } ?>
+                        >Đã chế biến
+                      </label>
+                      <label class="radio-inline">
+                        <input name="type" value="0" type="radio"
+                          <?php if ($product->type == 0) {
+                            echo "checked";
+                          } ?>
+                        >Thường
+                      </label>
+                    </div>
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <button type="submit" class="btn btn-default">Sửa</button>
                     <button type="reset" class="btn btn-default">Xóa hết</button>

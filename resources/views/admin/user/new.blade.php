@@ -10,6 +10,14 @@
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
+                @if (count($errors)>0)
+                @foreach ($errors->all() as $err)
+                  {{$err}}<br>
+                @endforeach
+              @endif
+              @if (session('thongbao'))
+                {{session('thongbao')}}
+              @endif
                 <form action="admin/user/create" method="POST">
                     <div class="form-group">
                         <label>Tên người dùng</label>
@@ -33,7 +41,8 @@
                     </div>
                     <div class="form-group">
                         <label>SĐT</label>
-                        <input type="phone" class="form-control" name="phone" placeholder="Nhập số điện thoại" />
+                        <input type="number" class="form-control" name="phone" placeholder="Nhập số điện thoại"
+                            max="10000000000" />
                     </div>
                     <div class="form-group">
                         <label>Vai trò</label>

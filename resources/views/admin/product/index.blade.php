@@ -21,6 +21,7 @@
                         <th>Hình Ảnh</th>
                         <th>Mô tả</th>
                         <th>Giảm giá</th>
+                        <th>Kiểu</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -34,6 +35,13 @@
                         <td>{{$product->image}}</td>
                         <td>{{$product->description}}</td>
                         <td>{{$product->discount}}</td>
+                        <td>
+                          @if ($product->type == 0)
+                            {{"Thường"}}
+                          @else
+                            {{"Chế biến"}}
+                          @endif
+                        </td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
                           <a href="admin/product/delete/{{$product->id}}"> Xóa</a>
                         </td>

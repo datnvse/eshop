@@ -44,6 +44,8 @@
                             Chờ Lấy hàng
                           @elseif($order->order_status == 1)
                             Đang giao hàng
+                          @elseif($order->order_status == 3)
+                            Đang giao hàng
                           @else
                             Đã nhận hàng
                           @endif

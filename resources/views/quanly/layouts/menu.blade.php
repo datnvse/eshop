@@ -36,17 +36,6 @@
   <div class="navbar-default sidebar" role="navigation">
       <div class="sidebar-nav navbar-collapse">
           <ul class="nav" id="side-menu">
-              <li class="sidebar-search">
-                  <div class="input-group custom-search-form">
-                      <input type="text" class="form-control" placeholder="Tìm kiếm">
-                      <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">
-                              <i class="fa fa-search"></i>
-                          </button>
-                      </span>
-                  </div>
-                  <!-- /input-group -->
-              </li>
               <li>
                   <a href="quanly/home"><i class="fa fa-dashboard fa-fw"></i> Mục lục</a>
               </li>
@@ -66,6 +55,18 @@
               <li>
                 <a href="quanly/order/index"><i class="fa fa-cube fa-fw"></i> Đơn hàng<span class="fa arrow"></span></a>
               </li>
+              <li>
+                    <a href="#"><i class="fa fa-list fa-fw"></i> Bài đăng<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                      <li>
+                          <a href="quanly/posts/index">Danh sách bài đăng</a>
+                      </li>
+                      <li>
+                          <a href="quanly/posts/new">Thêm Bài Đăng </a>
+                      </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                  </li>
           </ul>
       </div>
       <!-- /.sidebar-collapse -->

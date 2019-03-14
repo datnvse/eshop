@@ -11,7 +11,8 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "~1.0",
         "nesbot/carbon": "^2.16",
-        "paypal/rest-api-sdk-php": "^1.14"
+        "paypal/rest-api-sdk-php": "^1.14",
+        "unisharp/laravel-ckeditor": "^4.7"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -37,24 +37,6 @@
       text-align: center;
     }
   </style>
-    @if (count($errors) >0)
-      @foreach ($errors->all() as $err)
-        <div class="alert alert-danger">
-          {{ $err }}   
-        </div>
-      @endforeach
-    @endif
-    @if (session('success'))
-      <div class="alert alert-success" id="success">
-        {{session('success')}}
-      </div>
-        
-    @endif
-    @if (session('danger'))
-    <div class="alert alert-danger" id="danger">
-        {{session('danger')}}
-      </div>
-    @endif
   <div class="container box">
     <div class="row">
       <div class="card-left">
@@ -92,6 +74,15 @@
             <a href="login" class="">Bạn đã có tài khoản! </a>
           </form>
         </div>
+        {{-- <hr>
+        <div class="other-links">
+          <div class="item-link">
+            <a href="redirect/facebook" class=""><i class="fa fa-facebook"></i> Login with Facebook</a>
+          </div>
+          <div class="item-link">
+            <a href="redirect/google" class=""><i class="fa fa-google"></i> Login with Google</a>
+          </div>
+        </div> --}}
       </div>
     </div>
   </div>

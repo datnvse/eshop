@@ -35,17 +35,6 @@
   <div class="navbar-default sidebar" role="navigation">
       <div class="sidebar-nav navbar-collapse">
           <ul class="nav" id="side-menu">
-              <li class="sidebar-search">
-                  <div class="input-group custom-search-form">
-                      <input type="text" class="form-control" placeholder="Search...">
-                      <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">
-                              <i class="fa fa-search"></i>
-                          </button>
-                      </span>
-                  </div>
-                  <!-- /input-group -->
-              </li>
               <li>
                   <a href="admin/home"><i class="fa fa-dashboard fa-fw"></i> Mục lục</a>
               </li>
@@ -78,6 +67,19 @@
               <li>
                 <a href="admin/order/index"><i class="fa fa-cube fa-fw"></i> Đơn hàng<span class="fa arrow"></span></a>
               </li>
+
+              <li>
+                    <a href="admin/posts/index"><i class="fa fa-list fa-fw"></i> Bài đăng<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="admin/posts/index">Danh sách bài đăng</a>
+                        </li>
+                        <li>
+                            <a href="admin/posts/new">Thêm bài đăng</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
           </ul>
       </div>
       <!-- /.sidebar-collapse -->

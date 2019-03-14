@@ -21,13 +21,13 @@ class ProductController extends Controller
         'name' => 'required',
         'price' => 'required',
         'description' => 'required',
-        'discount' => 'required'
+        'type' => 'required'
       ],
       [
-        'name.required' => 'Product name cant be blank',
-        'price.required' => 'Product price cant be blank',
-        'description.required' => 'Product description cant be blank',
-        'discount.required' => 'Product discount cant be blank',
+        'name.required' => 'Tên sản phẩm không được bỏ trống',
+        'price.required' => 'Giá sản phẩm không được bỏ trống',
+        'description.required' => 'Mô tả sản phẩm không được bỏ trống',
+        'type.required' =>  'Nhập loại sản phẩm'
       ]
     );
 
@@ -36,6 +36,7 @@ class ProductController extends Controller
     $product->price = $request->price;
     $product->description = $request->description;
     $product->discount = $request->discount;
+    $product->type = $request->type;
 
     if ($request->hasFile('image')) {
       $file = $request->file('image');
@@ -69,19 +70,20 @@ class ProductController extends Controller
         'name' => 'required',
         'price' => 'required',
         'description' => 'required',
-        'discount' => 'required'
+        'type' => 'required'
       ],
       [
-        'name.required' => 'Product name cant be blank',
-        'price.required' => 'Product price cant be blank',
-        'description.required' => 'Product description cant be blank',
-        'discount.required' => 'Product discount cant be blank',
+        'name.required' => 'Tên sản phẩm không được bỏ trống',
+        'price.required' => 'Giá sản phẩm không được bỏ trống',
+        'description.required' => 'Mô tả sản phẩm không được bỏ trống',
+        'type.required' =>  'Nhập loại sản phẩm'
       ]
     );
     $product->name = $request->name;
     $product->price = $request->price;
     $product->description = $request->description;
     $product->discount = $request->discount;
+    $product->type = $request->type;
 
     if ($request->hasFile('image')) {
       $file = $request->file('image');

@@ -28,7 +28,7 @@ class UsersController extends Controller
     $this->validate($request,
       [
         'name' => 'required|min:3',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:users',
         'password' => 'required|min:6|max:32',
         'passwordconfirmation' => 'required|same:password',
       ],
@@ -37,9 +37,10 @@ class UsersController extends Controller
         'name.min' => 'Tên phải có từ 3 kí tự trở lên',
         'email.required' => 'Không được bỏ trống Email',
         'email.email' => 'Vui lòng nhập đúng Email',
+        'email.unique' => 'Email đã tồn tại',
         'password.required' => 'Không được bỏ trống mật khẩu',
-        'password.min' => 'Mật khẩu phải có từ 3 đến 32 kí tự',
-        'password.max' => 'Mật khẩu phải có từ 3 đến 32 kí tự',
+        'password.min' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
+        'password.max' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
         'passwordconfirmation.required' => 'Không được bỏ trống xác nhận mật khẩu',
         'passwordconfirmation.same' => 'Xác nhận mật khẩu không đúng với mật khẩu',
       ]);
@@ -50,7 +51,7 @@ class UsersController extends Controller
     $user->password = bcrypt($request->password);
 
     $user->save();
-    return redirect('login')->with('Sign up successfully');
+    return redirect('login')->with('success', 'Đăng kí tài khoản thành công');
   }
 
   function postlogin(Request $request) {
@@ -63,19 +64,19 @@ class UsersController extends Controller
         'email.required' => 'Không được bỏ trống Email',
         'email.email' => 'Vui lòng nhập đúng email',
         'password.required' => 'Không được bỏ trống mật khẩu',
-        'password.min' => 'Mật khẩu phải có từ 3 đến 32 kí tự',
-        'password.max' => 'Mật khẩu phải có từ 3 đến 32 kí tự',
+        'password.min' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
+        'password.max' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
       ]);
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-      return redirect('home')->with('sucess','Đăng nhập thành công');
+      return redirect('home')->with('success','Đăng nhập thành công');
     }else{
-      return redirect('login')->with('danger','Mật khẩu không chính xác');
+      return redirect('login')->with('danger','Tài khoản hoặc mật khẩu không chính xác');
     }
   }
 
   function logout(){
     Auth::logout();
-    return redirect('home')->with('Logout Successfully');
+    return redirect('home')->with('success', 'Đăng xuất thành công');
   }
 
   function edit($id){
@@ -105,14 +106,14 @@ class UsersController extends Controller
         ],
         [
           'password.required' => 'Không được bỏ trống mật khẩu',
-          'password.min' => 'Mật khẩu phải có từ 3 đến 32 kí tự',
-          'password.max' => 'Mật khẩu phải có từ 3 đến 32 kí tự',
+          'password.min' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
+          'password.max' => 'Mật khẩu phải có từ 6 đến 32 kí tự',
           'passwordconfirmation.required' => 'Không được bỏ trống xác nhận mật khẩu',
           'passwordconfirmation.same' => 'Xác nhận mật khẩu không đúng với mật khẩu',
         ]);
       $user->password = bcrypt($request->password);
     }
     $user->save();
-    return redirect('users/edit/'.$user->id);
+    return redirect('users/edit/'.$user->id)->with('success','Thay đổi thông tin thành công');
   }
 }

@@ -35,6 +35,11 @@
                             {{"selected"}}
                           @endif
                         >Đã nhận hàng</option>
+                        <option value="3"
+                          @if ($order->order_status == 3)
+                            {{"selected"}}
+                          @endif
+                        >Hủy đơn hàng</option>
                       </select>
                     </div>
                     <input type="hidden" name="_token" value="{{csrf_token()}}">

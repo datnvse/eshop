@@ -42,22 +42,12 @@
 								</div>
 							@endif
 							<h2 class="product-name">{{$product->name}}</h2>
-							<h3 class="product-price">{{$product->price* (1-$product->discount)}} VNĐ
+							<h3 class="product-price">{{number_format($product->price* (1-$product->discount))}} VNĐ
 								@if (!$product->discount == 0)
-									<del class="product-old-price">{{$product->price}} VNĐ</del>
+									<del class="product-old-price">{{number_format($product->price)}} VNĐ</del>
 								@endif
 							</h3>
-							<div>
-								<div class="product-rating">
-                  @for ($i=0; $i< round($product->comment->avg('rating')); $i++)
-									  <i class="fa fa-star"></i>
-                  @endfor
-                  @for ($i=0; $i< 5-round($product->comment->avg('rating')); $i++)
-                    <i class="fa fa-star-o empty"></i>
-                  @endfor
-								</div>
-								<a data-toggle="tab" href="#tab2"> Nhận xét</a>
-							</div>
+							
 							<p>{{$product->description}}</p>
 							<div class="product-btns">
 								<div class="qty-input">
@@ -103,18 +93,6 @@
 													</div>
 													<div class="form-group">
 														<textarea class="input" name="content" placeholder="Nội dung"></textarea>
-													</div>
-													<div class="form-group">
-														<div class="input-rating">
-															<strong class="text-uppercase">Đánh giá: </strong>
-															<div class="stars">
-																<input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
-																<input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
-																<input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
-																<input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
-																<input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
-															</div>
-														</div>
 													</div>
 													<input type="hidden" name="_token" value="{{csrf_token()}}">
 													<input type="hidden" name="id_user" value="{{$user->id}}">

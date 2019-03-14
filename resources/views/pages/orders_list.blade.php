@@ -13,6 +13,12 @@
 		</div>
 	</div>
 	<!-- /BREADCRUMB -->
+  <div class="section">
+    <div class="container">
+      <h3>Quản lý chi tiêu khách hàng</h3>
+      Tổng xu hiện có : {{Auth::user()->shopxu}}
+    </div>
+  </div>
 
 	<!-- section -->
 	<div class="section">
@@ -68,11 +74,11 @@
                           <td class="details">
                             <a href="products/{{$product->id}}/show">{{$product->name}}</a>
                           </td>
-                          <td class="price text-center"><strong>{{$product->price-$product->price*$product->discount}} VNĐ</strong>
+                          <td class="price text-center"><strong>{{number_format($product->price-$product->price*$product->discount)}} VNĐ</strong>
                           </td>
                           <td class="qty text-center"><input class="input quantity" type="number"
                             value="{{$line_item->quantity}}" readonly></td>
-                          <td class="total text-center"><strong class="primary-color">$<span class="subtotal">{{$line_item->price}}</span></strong></td>
+                          <td class="total text-center"><strong class="primary-color"><span class="subtotal">{{number_format($line_item->price)}} VNĐ</span></strong></td>
                         </tr>
                       @endforeach
                   </tbody>
@@ -80,7 +86,7 @@
                     <tr>
                       <th class="empty" colspan="3"></th>
                       <th>Tổng tiền</th>
-                      <th colspan="2" class="total"><span class="totalprice">{{$order->total_price}}</span> VNĐ</th>
+                      <th colspan="2" class="total"><span class="totalprice">{{number_format($order->total_price)}}</span> VNĐ</th>
                     </tr>
                   </tfoot>                
                 </table>

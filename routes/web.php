@@ -15,20 +15,28 @@ Route::get('comment/destroy/{id}', 'CommentsController@destroy');
 
 
 // Ajax
-
 Route::get('headercart', 'CartController@add_cart');
 
 // Search
-
 Route::post('searchproduct', 'ProductsController@search');
 
 // Order
-
 Route::get('orderslist', 'OrderController@list');
 Route::get('deleteorder/{id}', 'OrderController@deleteorder');
 
+// Feedback
+Route::get('feedback', 'FeedbackController@new');
+Route::post('feedback', 'FeedbackController@createfeedback');
 
-Route::get('likedproducts', 'ProductsController@likedProducts');
+//
+Route::get('deliciousdishes', 'PagesController@deliciousdishes');
+
+Route::get('posts/{id}/show', 'PostsController@show');
+
+Route::get('likedproducts', 'ProductsController@likedProducts');\
+
+Route::get('aboutus', 'PagesController@aboutus');
+Route::get('cookeddishes', 'PagesController@cookeddishes');
 
 Route::get('home','PagesController@home')->name('home');
 Route::get('detailproduct', 'PagesController@detailproduct');
@@ -44,7 +52,7 @@ Route::get('cart', 'ProductsController@cart');
 Route::get('multiple-add-to-cart', 'ProductsController@multiple_add_to_cart');
 Route::patch('update-cart', 'ProductsController@update_cart');
 Route::delete('remove-from-cart', 'ProductsController@remove_from_cart');
-Route::get('checkout', 'OrderController@new')->middleware('checklogin');
+Route::get('checkout', 'OrderController@new');
 Route::post('checkout', 'OrderController@create');
 
 Route::get('fetch_data', 'CommentsController@fetch_data');
@@ -82,6 +90,18 @@ Route::group(['prefix'=> 'admin', 'middleware' => 'adminLogin'], function(){
     Route::get('delete/{id}', 'admin\OrderController@delete');
   });
 
+  Route::group( ['prefix' => 'posts'], function(){
+    Route::get('index', 'admin\PostsController@index');
+    Route::get('new', 'admin\PostsController@new');
+    Route::post('create', 'admin\PostsController@create');
+    Route::get('edit/{id}', 'admin\PostsController@edit');
+    Route::post('update/{id}', 'admin\PostsController@update');
+    Route::get('delete/{id}', 'admin\PostsController@delete');
+    Route::get('editstatus/{id}', 'admin\PostsController@editstatus');
+    Route::post('updatestatus', 'admin\PostsController@updatestatus');
+  });
+
+
   Route::get('home', 'admin\AdminController@home');
 });
 Route::get('admin/login', 'admin\AdminController@login');
@@ -108,6 +128,16 @@ Route::group(['prefix'=> 'quanly', 'middleware' => 'quanlyLogin'], function(){
     Route::post('posteditorder', 'quanly\OrderController@posteditorder');
     Route::get('delete/{id}', 'quanly\OrderController@delete');
   });
+
+  Route::group( ['prefix' => 'posts'], function(){
+    Route::get('index', 'quanly\PostsController@index');
+    Route::get('new', 'quanly\PostsController@new');
+    Route::post('create', 'quanly\PostsController@create');
+    Route::get('edit/{id}', 'quanly\PostsController@edit');
+    Route::post('update/{id}', 'quanly\PostsController@update');
+    Route::get('delete/{id}', 'quanly\PostsController@delete');
+  });
+
 
   Route::get('home', 'quanly\QuanlyController@home');
 });

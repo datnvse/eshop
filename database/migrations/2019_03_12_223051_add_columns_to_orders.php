@@ -15,7 +15,7 @@ class AddColumnsToOrders extends Migration
     {
         Schema::table('orders', function($table){
             $table->integer('user_id');
-            $table->float('total_price');
+            $table->string('total_price');
         });
     }
 

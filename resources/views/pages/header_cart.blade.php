@@ -15,7 +15,7 @@
       @endphp
     @endforeach
   @endif
-  <span>${{$total}}</span>
+  <span>{{number_format($total)}}</span>
 </a>
 <div class="custom-menu">
   <div id="shopping-cart">
@@ -27,7 +27,7 @@
                 <img src="upload/images/{{$details['image']}}" alt="" height="70px">
               </div>
               <div class="product-body">
-                <h3 class="product-price">${{$details['promotionprice']}}
+                <h3 class="product-price">{{number_format($details['promotionprice'])}} VNĐ
                   <span class="qty">x{{$details['quantity']}}</span>
                 </h3>
                 <h2 class="product-name"><a href="products/{{$id}}/show">{{$details['name']}}</a></h2>

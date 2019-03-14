@@ -7,6 +7,7 @@ use App\LineItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class OrderController extends Controller
 {
@@ -15,6 +16,19 @@ class OrderController extends Controller
     }
     function create(Request $request){
         $order = new Order;
+
+        $this->validate($request,
+            [
+                'name' => 'required',
+                'address' => 'required',
+                'phone' => 'required',
+            ],
+            [
+                'name.required' => 'Nhập tên người nhận',
+                'address.required' => 'Nhập địa chỉ người nhận',
+                'phone.required' => 'Nhập số điện thoại người nhận',
+            ]
+        );
         $order->name = $request->name;
         $order->email = $request->email;
         $order->address = $request->address;
@@ -23,6 +37,18 @@ class OrderController extends Controller
         $order->user_id = $request->user_id;
         $order->total_price = $request->subtotal;
         $order->description = $request->description;
+        
+        if ($request->user_id) {
+            $user = User::find($request->user_id);
+            if ($request->usingShopxu == 'on') {
+                $order->total_price = $request->subtotal - $user->shopxu;
+                if ($order->total_price <0) {
+                    $order->total_price =0;
+                }
+                $user->shopxu = 0;
+            }
+            $user->save();
+        }
 
         $order->save();
 
@@ -36,12 +62,13 @@ class OrderController extends Controller
             $line_item->save();
         }
         $request->session()->forget('cart');
-        return redirect('home');
+        return redirect('home')->with('success','Đặt hàng thành công');
     }
 
     function list(){
         $user = Auth::user();
-        $orders = Order::where('user_id',$user->id)->get();
+        $orders = Order::where('user_id',$user->id)->orderBy('id','desc')->get();
+        
         return view('pages.orders_list',['orders'=>$orders]);
     }
 

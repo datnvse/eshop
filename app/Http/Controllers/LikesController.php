@@ -11,7 +11,7 @@ class LikesController extends Controller
 {
 	public function create(Request $request){
 		$product_id = $request->id;
-		$lastest_products = Product::orderBy('id','desc')->take(12)->get();
+		$lastest_products = Product::where('type',0)->orderBy('id','desc')->take(12)->get();
 		if(Auth::user()){
 			$like = new Like;
 			$like->id_product = $product_id;
@@ -29,7 +29,7 @@ class LikesController extends Controller
 	public function destroy(Request $request){
 		$id_user = Auth::user()->id;
 		$product_id = $request->id;
-		$lastest_products = Product::orderBy('id','desc')->take(12)->get();
+		$lastest_products = Product::where('type',0)->orderBy('id','desc')->take(12)->get();
 		$like = Like::where('id_user',$id_user)->where('id_product', $product_id)->value('id');
 		if ($like) {
 			Like::destroy($like);

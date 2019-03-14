@@ -10,6 +10,14 @@
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
+              @if (count($errors)>0)
+                @foreach ($errors->all() as $err)
+                  {{$err}}<br>
+                @endforeach
+              @endif
+              @if (session('thongbao'))
+                {{session('thongbao')}}
+              @endif
               <form action="admin/user/update/{{$user->id}}" method="POST">
                 <div class="form-group">
                     <label>Tên</label>

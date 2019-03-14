@@ -6,16 +6,29 @@
         <!-- Logo -->
         <div class="header-logo">
           <a class="logo" href="home">
-            <img src="./img/logo1.png" alt="">
+            <img src="./img/logo.png" alt="">
           </a>
         </div>
         <!-- /Logo -->
+        <style>
+          .header-search>form .search-input {
+            padding-left: 200px;
+            padding-right: 45px;
+          }
 
+          .header-search>form .search-categories {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 180px;
+          }
+        </style>
         <!-- Search -->
         <div class="header-search">
           <form action="searchproduct" method="post">
-            <select class="input search-categories">
-              <option value="0">Sản phẩm</option>
+            <select class="input search-categories" name="category">
+              <option value="1">Sản phẩm</option>
+              <option value="2">Món ngon mỗi ngày</option>
             </select>
             <input class="input search-input" type="text" placeholder="Tìm kiếm sản phẩm" name="name">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -23,6 +36,19 @@
           </form>
         </div>
         <!-- /Search -->
+        {{-- <!-- Search -->
+					<div class="header-search">
+            <form>
+              <input class="input search-input" type="text" placeholder="Enter your keyword">
+              <select class="input search-categories">
+                <option value="0">All Categories</option>
+                <option value="1">Category 01</option>
+                <option value="1">Category 02</option>
+              </select>
+              <button class="search-btn"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        <!-- /Search -->   --}}
       </div>
       <div class="pull-right">
         <ul class="header-btns">
@@ -32,12 +58,13 @@
               <div class="header-btns-icon">
                 <i class="fa fa-user-o"></i>
               </div>
-              <strong class="text-uppercase">Xem Tài khoản của tôi<i class="fa fa-caret-down"></i></strong>
+              <strong class="text-uppercase"> Xen Tài khoản của tôi<i class="fa fa-caret-down"></i></strong>
             </div>
             @if (!Auth::check())
               <a href="login" class="text-uppercase">Đăng nhập</a> / <a href="signup" class="text-uppercase">Đăng ký</a>
             @else
-            <a href="logout" class="text-uppercase">Đăng xuất</a>
+            {{-- <a href="logout" class="text-uppercase">Đăng xuất</a> --}}
+            <a href="users/edit/{{Auth::user()->id}}"> <i style="color:seagreen"> {{Auth::user()->name}}</i></a>
             @endif
             <ul class="custom-menu">
               @if (Auth::check())

@@ -10,7 +10,7 @@
 	<title>Thịt Lợn Sạch | @yield('title')</title>
   <base href="{{asset('')}}" >
 	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	{{-- <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet"> --}}
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
@@ -46,7 +46,24 @@
 	<!-- NAVIGATION -->
 	@include('layouts.navigation')
 	<!-- /NAVIGATION -->
-
+	@if (count($errors) >0)
+    @foreach ($errors->all() as $err)
+      <div class="alert alert-danger">
+        {{ $err }}   
+      </div>
+    @endforeach
+  @endif
+  @if (session('success'))
+    <div class="alert alert-success" id="success">
+      {{session('success')}}
+    </div>
+      
+  @endif
+  @if (session('danger'))
+  <div class="alert alert-danger" id="danger">
+      {{session('danger')}}
+    </div>
+  @endif
 	@yield('content')
 
 	<!-- FOOTER -->
@@ -63,6 +80,7 @@
 	<script src="js/notify.js"></script>
 	<script>
 		$(document).ready(function(){
+		
 			$('body').on('click', '.add-to-cart', function(e){
 				
 				e.preventDefault();
