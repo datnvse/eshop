@@ -42,7 +42,11 @@
               <img src="upload/images/{{$cookeddish->image}}" alt="" style="width: 260px; height: 190px;" data-toggle="modal" data-target="#myModal<?php echo  $cookeddish->id ?>">
             </div>
             <div class="product-body">
-              <h3 class="product-price">{{number_format($cookeddish->price*(1-$cookeddish->discount))}} VNĐ</h3>
+              <h3 class="product-price">{{number_format($cookeddish->price*(1-$cookeddish->discount))}} VNĐ
+                @if ($cookeddish->discount > 0)
+                  <del class="product-old-price"><?php echo $cookeddish->price ?></del>
+                @endif
+              </h3>
               @php
                 $rating = round($cookeddish->comment->avg('rating'));
               @endphp

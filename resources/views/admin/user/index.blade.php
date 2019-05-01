@@ -32,7 +32,7 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->address}}</td>
-                        <td>{{$user->phone}}</td>
+                        <td>0{{$user->phone}}</td>
                         <td>
                           @if ($user->role == 0)
                             Khách hàng

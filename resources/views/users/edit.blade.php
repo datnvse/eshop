@@ -66,7 +66,7 @@
 
             <div class="form-group">
               <label>SĐT</label>
-              <input type="phone" class="form-control" value="{{$user->phone}}" placeholder="Số điện thoại" name="phone">
+              <input type="phone" pattern="[0-9]{10}" class="form-control" value="0{{$user->phone}}" placeholder="Số điện thoại" name="phone">
             </div>
 
             <div class="form-group">

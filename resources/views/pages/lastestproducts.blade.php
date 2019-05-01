@@ -35,11 +35,14 @@
           <img src="upload/images/{{$lastest_product->image}}" alt="" style="width: 260px; height: 190px;" data-toggle="modal" data-target="#myModal<?php echo  $lastest_product->id ?>">
         </div>
         <div class="product-body">
-          <h3 class="product-price">{{number_format($lastest_product->price*(1-$lastest_product->discount))}} VNĐ</h3>
+          <h3 class="product-price">{{number_format($lastest_product->price*(1-$lastest_product->discount))}} VNĐ
+            @if ($lastest_product->discount > 0)
+              <del class="product-old-price"><?php echo $lastest_product->price ?></del>
+            @endif
+          </h3>
           @php
             $rating = round($lastest_product->comment->avg('rating'));
           @endphp
-          
           <h2 class="product-name"><a href="products/{{$lastest_product->id}}/show">{{$lastest_product->name}}</a></h2>
           <div class="product-btns">
             @if (Auth::user())

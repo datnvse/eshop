@@ -41,8 +41,8 @@
                     </div>
                     <div class="form-group">
                         <label>SĐT</label>
-                        <input type="number" class="form-control" name="phone" placeholder="Nhập số điện thoại"
-                            max="10000000000" />
+                        <input type="tel" class="form-control" name="phone" placeholder="Nhập số điện thoại"
+                            pattern="[0-9]{10}" />
                     </div>
                     <div class="form-group">
                         <label>Vai trò</label>

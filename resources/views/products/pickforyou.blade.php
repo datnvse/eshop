@@ -20,7 +20,11 @@
                 <img src="upload/images/{{$product->image}}" alt="" width="262.5px" height="350px">
               </div>
               <div class="product-body">
-                <h3 class="product-price">{{number_format($product->price - $product->price*$product->discount)}} VNĐ</h3>
+                <h3 class="product-price">{{number_format($product->price - $product->price*$product->discount)}} VNĐ
+                  @if ($product->discount > 0)
+                    <del class="product-old-price"><?php echo $product->price ?></del>
+                  @endif
+                </h3>
                 
                 <h2 class="product-name"><a href="products/{{$product->id}}/show">{{$product->name}}</a></h2>
                 <div class="product-btns">
